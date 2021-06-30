@@ -6,3 +6,203 @@ Medium green: #55c57a
 Dark green: #28b485
 
 */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 30px;
+  /* set all inherited properties */
+  font-family: "Lato", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #777;
+}
+
+.header {
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* image becomes the width of the element */
+  background-size: cover;
+  /* as we change the width, the bottom of the image gets cropped but not the top */
+  background-position: top;
+  position: relative;
+  /* For harder shapes: https://bennettfeely.com/clippy/ */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+}
+
+.logo-box {
+  position: absolute;
+  /* reference is the parent element, so the parent needs to be positioned as relative */
+  top: 40px;
+  left: 40px;
+}
+
+.logo {
+  height: 35px;
+}
+
+/* .logo:hover {
+  animation: moveInRight 1s ease-out;
+} */
+
+.text-box {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* the button is an inline element, so it will be moved to the center */
+  text-align: center;
+}
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* Avoid if animations get shaky and move up a bit because this entire element moves, 
+  the backface of this element will be hidden */
+  backface-visibility: hidden;
+  margin-bottom: 60px;
+}
+
+.heading-primary-main {
+  display: block;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* animation-delay: 1s; */
+  /* animation-iteration-count: 3; */
+  
+}
+
+.heading-primary-sub {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 17.4px;
+
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+
+  80% {
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+
+  80% {
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* when an anchor is selected */
+.btn:link,
+.btn:visited { 
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 40px;
+  /* so the box model works on inline elements, but treated as text */
+  display: inline-block;
+  border-radius: 100px;
+  /* the transition property has to be in the initial state */
+  transition: all .2s;
+  /* it needs to be relative to the ::after element can have absolute positioning */
+  position: relative;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  /* complete black but very little opacity */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, .2);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+}
+
+.btn-white {
+  background-color: #fff;
+  color: #777;
+}
+
+/* the after pseudoelement adds a virtual element after the selected element */
+.btn::after {
+  /* for a pseudoelement to appear on the page, 
+  we need to specify its content (event if empty) and display property property */
+  content: "";
+  /* we most likely want the display property to be the same */
+  display: inline-block;
+  /* same size as element */
+  height: 100%;
+  width: 100%;
+  /* should be the same as the btn */
+  border-radius: 100px;
+  /* to put it behind the button, so we need to put the position of the button as relative */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  /* the transition goes in the initial state */
+  transition: all .4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  /* trick for fading out */
+  opacity: 0;
+}
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.btn-animated {
+  /* the last one is the delay */
+  animation: moveInBottom .5s ease-out .5s;
+  /* automatically apply the styles up to 0% before the animation starts, 
+  otherwise the button will be in place before it gets animated,
+  so the 0% styles get applied before the animation starts
+  */
+  animation-fill-mode: backwards;
+}

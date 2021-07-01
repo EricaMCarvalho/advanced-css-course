@@ -1,0 +1,19 @@
+NOTES FOR GIT BOOTCAMP COURSE
+
+git log --abbrev-commit (shorter hash)
+git log --pretty=oneline (SAME AS git log --oneline)
+
+Amending a commit:
+
+git commit -m "message"
+git add forgotten_file
+git commit --amend
+
+============
+for .gitignore:
+
+.DS_Store
+folderName/ (ignores the entire directory)
+*.log (ignore files with .log extension)
+
+=============

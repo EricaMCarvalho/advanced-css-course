@@ -1,3 +1,10 @@
+$color-primary: #55c57a;
+$color-primary-light: #7ed56f;
+$color-primary-dark: #28b485;
+
+$color-dark-gray: #777;
+$color-white: #fff;
+
 *,
 *::after,
 *::before {
@@ -5,10 +12,12 @@
   padding: 0;
   /** now we're making all elements inhirit this from body, except body because of the specificity */
   /** it's better to use inheritance the assign things to elements when possible */
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
 
 html {
-  font-size: 62.5%; }
+  font-size: 62.5%;
+}
 
 body {
   /* set all inherited properties */
@@ -16,90 +25,114 @@ body {
   font-weight: 400;
   /* font-size: 16px; */
   line-height: 1.7;
-  color: #777;
+  color: $color-dark-gray;
   padding: 3rem;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 .header {
   height: 95vh;
-  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  background-image: linear-gradient(to right bottom, rgba($color-primary-light, 0.8), rgba($color-primary-dark, 0.8)), url(../img/hero.jpg);
   /* image becomes the width of the element */
   background-size: cover;
   /* as we change the width, the bottom of the image gets cropped but not the top */
   background-position: top;
   position: relative;
   /* For harder shapes: https://bennettfeely.com/clippy/ */
-  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%); }
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%)
+}
 
 .header__logo-box {
   position: absolute;
   /* reference is the parent element, so the parent needs to be positioned as relative */
   top: 4rem;
-  left: 4rem; }
+  left: 4rem;
+}
 
 .header__logo {
-  height: 3.5rem; }
+  height: 3.5rem;
+}
 
 /* .logo:hover {
   animation: moveInRight 1s ease-out;
 } */
+
 .header__text-box {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   /* the button is an inline element, so it will be moved to the center */
-  text-align: center; }
+  text-align: center;
+}
 
 .heading-primary {
-  color: #fff;
+  color: $color-white;
   text-transform: uppercase;
   /* Avoid if animations get shaky and move up a bit because this entire element moves, 
   the backface of this element will be hidden */
   backface-visibility: hidden;
-  margin-bottom: 6rem; }
+  margin-bottom: 6rem;
+}
 
 .heading-primary__text--main {
   display: block;
   font-size: 6rem;
   font-weight: 400;
   letter-spacing: 3.5rem;
+
   animation-name: moveInLeft;
   animation-duration: 1s;
   animation-timing-function: ease-out;
   /* animation-delay: 1s; */
-  /* animation-iteration-count: 3; */ }
+  /* animation-iteration-count: 3; */
+  
+}
 
 .heading-primary__text--sub {
   display: block;
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: 1.75rem;
-  animation: moveInRight 1s ease-out; }
+
+  animation: moveInRight 1s ease-out;
+}
 
 @keyframes moveInLeft {
   0% {
     opacity: 0;
-    transform: translateX(-10rem); }
+    transform: translateX(-10rem);
+  }
+
   80% {
-    transform: translateX(1rem); }
+    transform: translateX(1rem);
+  }
+
   100% {
     opacity: 1;
-    transform: translate(0); } }
+    transform: translate(0);
+  }
+}
 
 @keyframes moveInRight {
   0% {
     opacity: 0;
-    transform: translateX(10rem); }
+    transform: translateX(10rem);
+  }
+
   80% {
-    transform: translateX(-1rem); }
+    transform: translateX(-1rem);
+  }
+
   100% {
     opacity: 1;
-    transform: translateX(0); } }
+    transform: translateX(0);
+  }
+}
 
 /* when an anchor is selected */
 .btn:link,
-.btn:visited {
+.btn:visited { 
   text-transform: uppercase;
   text-decoration: none;
   padding: 1.5rem 4rem;
@@ -110,20 +143,24 @@ body {
   transition: all .2s;
   /* it needs to be relative to the ::after element can have absolute positioning */
   position: relative;
-  font-size: 1.6rem; }
+  font-size: 1.6rem;
+}
 
 .btn:hover {
-  transform: translateY(-0.3rem);
+  transform: translateY(-.3rem);
   /* complete black but very little opacity */
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .2);
+}
 
 .btn:active {
-  transform: translateY(0.1rem);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  transform: translateY(.1rem);
+  box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+}
 
 .btn--white {
-  background-color: #fff;
-  color: #777; }
+  background-color: $color-white;
+  color: $color-dark-gray;
+}
 
 /* the after pseudoelement adds a virtual element after the selected element */
 .btn::after {
@@ -143,23 +180,30 @@ body {
   left: 0;
   z-index: -1;
   /* the transition goes in the initial state */
-  transition: all .4s; }
+  transition: all .4s;
+}
 
 .btn--white::after {
-  background-color: #fff; }
+  background-color: $color-white;
+}
 
 .btn:hover::after {
   transform: scaleX(1.4) scaleY(1.6);
   /* trick for fading out */
-  opacity: 0; }
+  opacity: 0;
+}
 
 @keyframes moveInBottom {
   0% {
     opacity: 0;
-    transform: translateY(3rem); }
+    transform: translateY(3rem);
+  }
+
   100% {
     opacity: 1;
-    transform: translateY(0); } }
+    transform: translateY(0);
+  }
+}
 
 .btn--animated {
   /* the last one is the delay */
@@ -168,4 +212,5 @@ body {
   otherwise the button will be in place before it gets animated,
   so the 0% styles get applied before the animation starts
   */
-  animation-fill-mode: backwards; }
+  animation-fill-mode: backwards;
+}

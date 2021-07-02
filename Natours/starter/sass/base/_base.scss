@@ -1,0 +1,19 @@
+/* for low lever basics like resets, this file is a partial - starts with _ */
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  /** now we're making all elements inhirit this from body, except body because of the specificity */
+  /** it's better to use inheritance the assign things to elements when possible */
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  box-sizing: border-box;
+}

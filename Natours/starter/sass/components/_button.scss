@@ -1,0 +1,74 @@
+.btn {
+  /* when an anchor is selected */
+  &:link,
+  &:visited { 
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    /* so the box model works on inline elements, but treated as text */
+    display: inline-block;
+    border-radius: 10rem;
+    /* the transition property has to be in the initial state */
+    transition: all .2s;
+    /* it needs to be relative to the ::after element can have absolute positioning */
+    position: relative;
+    font-size: 1.6rem;
+  }
+
+  &:hover {
+    transform: translateY(-.3rem);
+    /* complete black but very little opacity */
+    box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      /* trick for fading out */
+      opacity: 0;
+    }
+  }
+
+  &:active {
+    transform: translateY(.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-dark-gray;
+
+    &::after {
+      background-color: $color-white;
+    }
+  }
+
+  /* the after pseudoelement adds a virtual element after the selected element */
+  &::after {
+    /* for a pseudoelement to appear on the page, 
+    we need to specify its content (event if empty) and display property property */
+    content: "";
+    /* we most likely want the display property to be the same */
+    display: inline-block;
+    /* same size as element */
+    height: 100%;
+    width: 100%;
+    /* should be the same as the btn */
+    border-radius: 10rem;
+    /* to put it behind the button, so we need to put the position of the button as relative */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* the transition goes in the initial state */
+    transition: all .4s;
+  }
+
+  &--animated {
+    /* the last one is the delay */
+    animation: moveInBottom .5s ease-out .5s;
+    /* automatically apply the styles up to 0% before the animation starts, 
+    otherwise the button will be in place before it gets animated,
+    so the 0% styles get applied before the animation starts
+    */
+    animation-fill-mode: backwards;
+  }
+}

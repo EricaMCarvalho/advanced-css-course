@@ -161,3 +161,8 @@ body {
 /* .logo:hover {
   animation: moveInRight 1s ease-out;
 } */
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }

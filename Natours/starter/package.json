@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile:sass": "node-sass sass/main.scss css/style.css -w" 
+    "compile:sass": "node-sass sass/main.scss css/style.css -w"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
     "node-sass": "^6.0.1"
   },
   "dependencies": {
+    "@icon/linea-basic": "^1.0.0-alpha.4",
     "jquery": "^3.6.0"
   }
 }
